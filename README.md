@@ -78,6 +78,10 @@ JOB	START	END	INCL	PERC	DETECTED	NB_PRIMER_PAIRS	MIN_TM	MAX_TM	MAX_DEGEN	P3_CONF
 ```
 Please get in touch if you want more info on how to prepare input data, or how to configure UjiLity for your specific use case.
 
+<img src="docs/figure_5.png" title="Figure 1"/>
+
+Figure 5: Phylogenetic tree of PolB meta-barcodes. Maximum-likelihood phylogenetic of Megaviridae PolB meta-barcodes with additional known Megaviridae sequences. Branch lengths are scaled. The tree is rooted by nine Phycodnaviridae sequences, which are not shown in this figure. Leaves are either meta-barcodes (black) or reference Megaviridae PolBs (red). Background colors of the tree indicate either putative Megamimivirinae (pink) or putative Mesomimivirinae (green). Lengths of orange bars outside the tree represent OTU abundances (number of reads, log scaled).
+
 ## Version 2.17 (2022-05-28) pascal.hingamp@univ-amu.fr
     		
     Warning: as often, this script was never meant to grow so large.
