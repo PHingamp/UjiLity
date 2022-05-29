@@ -16,7 +16,7 @@ in marine water: https://www.mdpi.com/1999-4915/10/9/496
 ## Running the script
  - clone the git repo
  - install the required accessory apps via your favorite package manager (seqkit, primer3, t_coffee, blast, mafft)
- - some required bits & pieces are provided as binaries in bin/ (difficult to get hold of, such as dnaMATE which had to be hacked to run on 64bits Linux, and nw_luaed which is often the only app in the nw_utils suite that can prove tricky to compile) 
+ - some required bits & pieces are provided as binaries in bin/ (difficult to get hold of, such as ```dnaMATE``` which had to be hacked to run on 64 bits Linux, and ```nw_luaed``` which is often the only app in the nw_utils suite that can prove tricky to compile) 
  - on an HPC cluster to scan a sub region of the included multiple alignment, submit ```Ujility_scan_sbatch.sh``` to slurm, eg:
 ```
   sbatch --partition=fast --job-name=UjiLity_v2 --array=1-50 --time=0-10:00 Ujility_scan_sbatch_2.sh Uji_v2 14032 6 256 45 51
@@ -76,6 +76,7 @@ JOB	START	END	INCL	PERC	DETECTED	NB_PRIMER_PAIRS	MIN_TM	MAX_TM	MAX_DEGEN	P3_CONF
 2.49	14320	14810	40	4.54	16	29	45	51	256	primer3_run_params.p3	500	20	316
 2.50	14326	14816	5	0.57	5	1	45	51	256	primer3_run_params.p3	500	20	42
 ```
+If there is interest, I can document whet is expected in the input multiple sequence alignement files.
 
 ## Version 2.17 (2022-05-28) pascal.hingamp@univ-amu.fr
     		
