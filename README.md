@@ -1,19 +1,19 @@
-    # UjiLity - UJI muLtiple prImer uTilitY
+# UjiLity - UJI muLtiple prImer uTilitY
+
+A script to design sets of oligonucleotide primers with controlled
+degeneracy aimed at amplifying marker genes with very high sequence
+diversity (e.g. virus diversity studies).
     
-    A script to design sets of oligonucleotide primers with controlled
-    degeneracy aimed at amplifying marker genes with very high sequence
-    diversity (e.g. virus diversity studies).
+The script was written in the spring of 2015 in Uji, Japan, by 
+Pascal Hingamp as a Kyoto University visiting scholar in the lab
+of Hiro Ogata whose team members provided instrumental insights during
+development: Hiro Ogata, Takashi Yoshida, Susumu Goto, Tomoko Mihara
+& Yosuke Nishimura. The resulting primer design strategy was validated 
+by an experimental test of a UjiLity designed set of primers (called
+MEGAPRIMER) that demonstrated detection of giant viruses diversity
+in marine water: https://www.mdpi.com/1999-4915/10/9/496
     
-    The script was written in the spring of 2015 in Uji, Japan, by 
-    Pascal Hingamp as a Kyoto University visiting scholar in the lab
-    of Hiro Ogata whose team members provided instrumental insights during
-    development: Hiro Ogata, Takashi Yoshida, Susumu Goto, Tomoko Mihara
-    & Yosuke Nishimura. The resulting primer design strategy was validated 
-    by an experimental test of a UjiLity designed set of primers (called
-    MEGAPRIMER) that demonstrated detection of giant viruses diversity
-    in marine water: https://www.mdpi.com/1999-4915/10/9/496
-    
-    ## Version 2.17 (2022-05-28) pascal.hingamp@univ-amu.fr
+## Version 2.17 (2022-05-28) pascal.hingamp@univ-amu.fr
     		
     Warning: as often, this script was never meant to grow so large.
     It therefore rather monolithic, severely lacking in structure,
