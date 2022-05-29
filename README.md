@@ -25,8 +25,8 @@ The UjiLity script applies high-throughput agglomerative iterations of the ```pr
  - after completion of all the jobs, you can run the reporting script ```./UjiLity_scan_report.pl 'Uji_v2' Uji_results 881``` to get an overview of the number of primer pairs necessary to amplify the targets, with their degeneracy and melting temperatures ranges (both are controlled in the sbatch script parameters):
 ```
 JOB	START	END	INCL	PERC	DETECTED	NB_PRIMER_PAIRS	MIN_TM	MAX_TM	MAX_DEGEN	P3_CONF	MAX_P3	MAX_NEG	SUM_DEGEN
-2.1	14032	14522					45	51	256	primer3_run_params.p3	500	20	
-2.2	14038	14528	852	96.71		194	45	51	256	primer3_run_params.p3	500	20	
+2.1	14032	14522	823	93.42	838	192	45	51	256	primer3_run_params.p3	500	20	35331
+2.2	14038	14528	852	96.71	866	194	45	51	256	primer3_run_params.p3	500	20	36280
 2.3	14044	14534	861	97.73	874	195	45	51	256	primer3_run_params.p3	500	20	36859
 2.4	14050	14540	870	98.75	884	192	45	51	256	primer3_run_params.p3	500	20	37351
 2.5	14056	14546	869	98.64	883	193	45	51	256	primer3_run_params.p3	500	20	37256
