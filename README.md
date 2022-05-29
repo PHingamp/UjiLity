@@ -16,6 +16,7 @@ in marine water: https://www.mdpi.com/1999-4915/10/9/496
 ## Running the script
  - clone the git repo
  - install the required accessory apps via your favorite package manager (seqkit, primer3, t_coffee, blast, mafft)
+ - some required bits & pieces are provided as binaries in bin/ (difficult to get hold of, such as dnaMATE which had to be hacked to run on 64bits Linux, and nw_luaed which is often the only app in the nw_utils suite that can prove tricky to compile) 
  - on an HPC cluster to scan a sub region of the included multiple alignment, submit ```Ujility_scan_sbatch.sh``` to slurm, eg:
 ```
   sbatch --partition=fast --job-name=UjiLity_v2 --array=1-50 --time=0-10:00 Ujility_scan_sbatch_2.sh Uji_v2 14032 6 256 45 51
