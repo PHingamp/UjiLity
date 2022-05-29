@@ -76,7 +76,7 @@ JOB	START	END	INCL	PERC	DETECTED	NB_PRIMER_PAIRS	MIN_TM	MAX_TM	MAX_DEGEN	P3_CONF
 2.49	14320	14810	40	4.54	16	29	45	51	256	primer3_run_params.p3	500	20	316
 2.50	14326	14816	5	0.57	5	1	45	51	256	primer3_run_params.p3	500	20	42
 ```
-If there is interest, I can document what is expected in the input multiple sequence alignement files.
+Please get in touch if you want more info on how to prepare input data, or how to configure UjiLity for your specific use case.
 
 ## Version 2.17 (2022-05-28) pascal.hingamp@univ-amu.fr
     		
