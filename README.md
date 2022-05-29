@@ -1,29 +1,28 @@
 # UjiLity - UJI muLtiple prImer uTilitY
 
-A script to design sets of oligonucleotide primers with controlled
-degeneracy aimed at amplifying marker genes with very high sequence
-diversity (e.g. virus diversity studies).
+A script to design sets of oligonucleotide primers with controlled degeneracy aimed at amplifying marker genes with very high sequence diversity (e.g. virus diversity studies).
     
-The script was written in the spring of 2015 in Uji, Japan, by 
-Pascal Hingamp as a Kyoto University visiting scholar in the lab
-of Hiro Ogata whose team members provided instrumental insights during
-development: Hiro Ogata, Takashi Yoshida, Susumu Goto, Tomoko Mihara
-& Yosuke Nishimura. The resulting primer design strategy was validated 
-by an experimental test of a UjiLity designed set of primers (called
-MEGAPRIMER) that demonstrated detection of giant viruses diversity
-in marine water: https://www.mdpi.com/1999-4915/10/9/496
+The script was written in the spring of 2015 in Uji, Japan, by Pascal Hingamp as a Kyoto University visiting scholar in the lab of Hiro Ogata whose team members provided instrumental insights during development: Hiro Ogata, Takashi Yoshida, Susumu Goto, Tomoko Mihara & Yosuke Nishimura. The resulting primer design strategy was validated  by an experimental test of a UjiLity designed set of primers (called MEGAPRIMER) that demonstrated detection of giant viruses diversity in marine water: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6163766/ 
+
+The UjiLity script applies high-throughput agglomerative iterations of the ```primer3``` oligonucleotide design software (Fig 2). Briefly, the MSA is scanned with a sliding window, for each window, a growing MSA subset starting from a single sequence then adding progressively the next closests homologs (hence the agglomerative appelation) is subjected to primer3 (via boiling down to a consensus sequence of the MSA subset) until adequate primers can no longer be designed, given the user defined constraints of Tm, degeneracy, & amplicon size. The primer pair for the last successful MSA subset is added to the collection of primer pairs, then a the process is reapeated starting with a new yet un-amplified sequence, until all sequences of the MSA have been exhausted. The order of sequence picking from the whole MSA defined by next smallest distance in a guide tree, as well as optional weights for each sequence of the MSA (in our case we used ecological abundance in metagenomes). Preparation of the input MSA and guide tree is schematised in figure 1.
+
+<table>
+  <tr>
+    <td><img src="docs/figure_1.png" width="500px" title="Figure 1"/></td><td><img src="docs/figure_2.png" width="500px" title="Figure 2"/></td></tr>
+    <tr><td>Figure 1: Schematic diagram of the building of the Megaviridae polB collection. This figure shows how the input data (reference Megaviridae genomes, Tara Oceans metagenes, and Tara Oceans raw reads) were used to produce a Megaviridae guide tree and a collection of 923 Megaviridae polB gene sequences.</td><td>Figure 2: Schematic diagram of the design of the set of Megaviridae polB primer pairs. This figure shows the greedy agglomerative iterative procedure guided by the estimated environmental polB abundances (derived from read mappings) and the polB sequence similarities (encoded in the guide tree).</td></tr></table>
 
 ## Running the script
  - clone the git repo
- - install the required accessory apps via your favorite package manager (seqkit, primer3, t_coffee, blast, mafft)
- - some required bits & pieces are provided as binaries in bin/ (difficult to get hold of, such as ```dnaMATE``` which had to be hacked to run on 64 bits Linux, and ```nw_luaed``` which is often the only app in the nw_utils suite that can prove tricky to compile) 
- - on an HPC cluster to scan a sub region of the included multiple alignment, submit ```Ujility_scan_sbatch.sh``` to slurm, eg:
+ - install the required accessory apps via your favorite package manager (```seqkit```, ```primer3```, ```t_coffee```, ```blast```, ```mafft```)
+ - ```UjiLity``` overides completely the Tm constaints included in the otherwise very efficient ```primer3``` software, due to its incpacity to deal with sequences with degenerate (ambiguous) positions (which are extremely frequent when aligning diverse distant homologs). Instead ```UjiLity``` actually recursively expands the primers with degenerate positions and uses the very apt ```dnaMATE``` binary to accuratly estimate the Tm of all implicit oligonucleotides, an then provides the estimated Tm dispertion of each degenerate oligo
+ - some required bits & pieces are provided as binaries in bin/ (difficult to get hold of, such as ```dnaMATE``` which had to be hacked to run on 64 bits Linux, and ```nw_luaed``` which is often the only app in the so usefull ```nw_utils``` suite that can prove tricky to compile), whilst others such as ```pal2nal``` are directly integrated in the script (being Perl and all).
+ - on an HPC cluster to scan a sub region of the included multiple alignment, submit ```Ujility_scan_sbatch.sh``` to slurm, eg with the example input dataset from a giant virus DNA polymerase multiple alignment:
 ```
-  sbatch --partition=fast --job-name=UjiLity_v2 --array=1-50 --time=0-10:00 Ujility_scan_sbatch_2.sh Uji_v2 14032 6 256 45 51
+  sbatch --partition=fast --job-name=UjiLity_v2 --array=1-50 --time=0-10:00 Ujility_scan_sbatch.sh Uji_v2 14032 6 256 45 51
   #USAGE Ujility_sbatch.sh job_name offset step degen mintm maxtm
 ```
- - if you don't have access to an HPC cluster, you can use the simple ```UjiLity_scan.pl``` to scan your MSA
- - after completion, you can run the reporting script ```./UjiLity_scan_report.pl 'Uji_v2' Uji_results 881``` to get an overview of the number of primer pairs necessary to amplify the targets, with their degeneracy and melting temperatures ranges (both are controlled in the sbatch script):
+ - if you don't have access to an HPC cluster, you can use the simple ```UjiLity_scan.pl``` with a poor man's parallelisation implementation to scan your MSA
+ - after completion of all the jobs, you can run the reporting script ```./UjiLity_scan_report.pl 'Uji_v2' Uji_results 881``` to get an overview of the number of primer pairs necessary to amplify the targets, with their degeneracy and melting temperatures ranges (both are controlled in the sbatch script parameters):
 ```
 JOB	START	END	INCL	PERC	DETECTED	NB_PRIMER_PAIRS	MIN_TM	MAX_TM	MAX_DEGEN	P3_CONF	MAX_P3	MAX_NEG	SUM_DEGEN
 2.1	14032	14522					45	51	256	primer3_run_params.p3	500	20	
