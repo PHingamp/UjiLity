@@ -82,6 +82,20 @@ Please get in touch if you want more info on how to prepare input data, or how t
 
 Figure 5: Phylogenetic tree of PolB meta-barcodes. Maximum-likelihood phylogenetic of Megaviridae PolB meta-barcodes with additional known Megaviridae sequences. Branch lengths are scaled. The tree is rooted by nine Phycodnaviridae sequences, which are not shown in this figure. Leaves are either meta-barcodes (black) or reference Megaviridae PolBs (red). Background colors of the tree indicate either putative Megamimivirinae (pink) or putative Mesomimivirinae (green). Lengths of orange bars outside the tree represent OTU abundances (number of reads, log scaled).
 
+## Dependencies & credits
+
+Ujility would not exist without the following software:
+
+ - primer3 https://github.com/primer3-org
+ - emboss http://emboss.sourceforge.net/
+ - T-COFFEE https://www.tcoffee.org/Projects/tcoffee/index.html
+ - MAFFT https://mafft.cbrc.jp/alignment/software/
+ - goalign https://github.com/evolbioinfo/goalign
+ - blast https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
+ - nw_utils https://github.com/tjunier/newick_utils
+ - seqkit https://bioinf.shenwei.me/seqkit/
+ - dnaMATE http://melolab.org/dnaMATE/
+
 ## Version 2.17 (2022-05-28)
     		
     Warning: as often, this script was never meant to grow so large.
